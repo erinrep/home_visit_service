@@ -1,0 +1,19 @@
+<.header>
+  Requested Visits
+</.header>
+
+<.table id="visits" rows={@visits}>
+  <:col :let={visit} label="Member">
+    <%= "#{visit.member_user.first_name} #{visit.member_user.last_name}" %>
+  </:col>
+  <:col :let={visit} label="Tasks"><%= visit.tasks %></:col>
+  <:col :let={visit} label="Minutes"><%= visit.minutes %></:col>
+  <:col :let={visit} label="Date">
+    <%= Calendar.strftime(visit.date, "%a, %B %d %I:%M %p") %>
+  </:col>
+  <:action :let={visit}>
+    <%= if @current_user.id != visit.member && visit.status == :pending do %>
+      <.link href={~p"/visits/#{visit}/accept"} method="post">Accept</.link>
+    <% end %>
+  </:action>
+</.table>

@@ -1,0 +1,64 @@
+<.header>
+  My Visits
+  <:actions>
+    <%= if( @pending_balance < @current_user.balance) do %>
+      <.link href={~p"/visits/new"}>
+        <.button>Request Visit</.button>
+      </.link>
+    <% else %>
+      <p>You need to fulfill visits before you can request new ones.</p>
+    <% end %>
+  </:actions>
+</.header>
+<p>
+  you have requested <%= @pending_balance %> of your <%= @current_user.balance %> minutes.
+</p>
+
+<section style="margin: 40px 0 0;">
+  <h2>My Requested Visits</h2>
+  <.table id="member_visits" rows={@member_visits}>
+    <:col :let={visit} label="Tasks"><%= visit.tasks %></:col>
+    <:col :let={visit} label="Minutes"><%= visit.minutes %></:col>
+    <:col :let={visit} label="Date">
+      <%= Calendar.strftime(visit.date, "%a, %B %d %I:%M %p") %>
+    </:col>
+    <:col :let={visit} label="Pal">
+      <%= if(visit.pal) do %>
+        <%= "#{visit.pal_user.first_name} #{visit.pal_user.last_name}" %>
+      <% end %>
+    </:col>
+    <:col :let={visit} label="status"><%= visit.status %></:col>
+    <:action :let={visit}>
+      <%= if visit.status == :accepted do %>
+        <.link href={~p"/visits/#{visit}/fulfill"} method="post">Fulfill</.link>
+      <% end %>
+    </:action>
+    <:action :let={visit}>
+      <%= if(visit.status == :pending) do %>
+        <.link navigate={~p"/visits/#{visit}/edit"}>Edit</.link>
+      <% end %>
+    </:action>
+    <:action :let={visit}>
+      <%= if(visit.status == :pending) do %>
+        <.link href={~p"/visits/#{visit}"} method="delete" data-confirm="Are you sure?">
+          Delete
+        </.link>
+      <% end %>
+    </:action>
+  </.table>
+</section>
+
+<section style="margin: 40px 0 0;">
+  <h2>My Pal Visits</h2>
+  <.table id="pal_visits" rows={@pal_visits}>
+    <:col :let={visit} label="Tasks"><%= visit.tasks %></:col>
+    <:col :let={visit} label="Minutes"><%= visit.minutes %></:col>
+    <:col :let={visit} label="Date">
+      <%= Calendar.strftime(visit.date, "%a, %B %d %I:%M %p") %>
+    </:col>
+    <:col :let={visit} label="Member">
+      <%= "#{visit.member_user.first_name} #{visit.member_user.last_name}" %>
+    </:col>
+    <:col :let={visit} label="status"><%= visit.status %></:col>
+  </.table>
+</section>

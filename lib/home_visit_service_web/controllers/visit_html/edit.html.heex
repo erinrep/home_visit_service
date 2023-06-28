@@ -1,0 +1,7 @@
+<.header>
+  Edit Visit <%= @visit.id %>
+</.header>
+
+<.visit_form changeset={@changeset} action={~p"/visits/#{@visit}"} />
+
+<.back navigate={~p"/my-visits"}>Back to visits</.back>
