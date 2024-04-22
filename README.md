@@ -7,11 +7,14 @@ An app to allow users to register for an account and then request visits as a me
 
 Install with brew
 `brew install elixir`
+
 or visit [elixir-lang.org](https://elixir-lang.org/install.html) for other installation options
 
-### Requires Postgres 2.6.2
+### Requires PostgresSQL 15 or 16
 
-Visit [postgresql.org](https://www.postgresql.org/download/) for installation options
+Install [Postgres.app](https://postgresapp.com/)
+
+or visit [postgresql.org](https://www.postgresql.org/download/) for other installation options
 
 ## Setup
 To start the server:
