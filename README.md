@@ -1,9 +1,9 @@
 # HomeVisitService
 
-An app to allow users to register for an account and then requests visits as a member or fulfill visits as a pal.
+An app to allow users to register for an account and then request visits as a member or fulfill visits as a pal.
 
 ## Requirements
-### Requires Elixir 1.14.5 and OTP 25
+### Requires Elixir 1.16.2 and OTP 26
 
 Install with brew
 `brew install elixir`
