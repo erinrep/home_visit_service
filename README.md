@@ -36,11 +36,13 @@ Run `mix test` to run unit tests
 
 ## Next Steps
 - Do not allow users to request visits until they have verified their email address
+- Add back password rules (simplified for testing)
 - Convert local time to utc on form submission
 - Create admin users with ability to perform admin actions. For example:
   - Update the registration balance amount in order to hold sign up promotions
   - Gift minutes?
 - Idea: Allow members to reject an accepted visit
 - set up CI to run tests and formatter for PRs
+- add seed data to help with development and testing
 
 
